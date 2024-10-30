@@ -66,7 +66,7 @@ fun TopBar(
                     Icon(
                         imageVector = Icons.Filled.Notifications,
                         contentDescription = "",
-                        modifier = Modifier.clickable { navController.navigate(Screens.Notifiaciones.name) }
+                        modifier = Modifier.clickable { navController.navigate(Screens.Notifications.name) }
                     )
                 }
             }

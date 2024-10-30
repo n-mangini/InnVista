@@ -23,17 +23,17 @@ fun BottomBar(
     onNavigate: (String) -> Unit,
 ) {
     val searchTab = TabBarItem(
-        title = Screens.Buscar.name,
+        title = Screens.Search.name,
         selectedIcon = Icons.Filled.Search,
         unselectedIcon = Icons.Outlined.Search
     )
     val wishlistTab = TabBarItem(
-        title = Screens.Deseados.name,
+        title = Screens.Wishlist.name,
         selectedIcon = Icons.Filled.Star,
         unselectedIcon = Icons.Outlined.Star
     )
     val profileTab = TabBarItem(
-        title = Screens.Perfil.name,
+        title = Screens.Profile.name,
         selectedIcon = Icons.Filled.Person,
         unselectedIcon = Icons.Outlined.Person
     )
