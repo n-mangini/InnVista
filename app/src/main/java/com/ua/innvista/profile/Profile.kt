@@ -78,7 +78,7 @@ fun SetUsername(
         Button(
             onClick = { onSave(userNameLocal) },
             colors = ButtonDefaults.buttonColors(
-                containerColor = colorResource(R.color.appBlue),
+                containerColor = MaterialTheme.colorScheme.primary,
                 contentColor = colorResource(R.color.black)
             )
         ) {
@@ -127,7 +127,7 @@ fun UserProfile(userName: String) {
                 checked = isToggled,
                 onCheckedChange = { isToggled = it },
                 colors = SwitchDefaults.colors(
-                    checkedThumbColor = colorResource(R.color.appBlue),
+                    checkedThumbColor = MaterialTheme.colorScheme.primary,
                     uncheckedThumbColor = colorResource(R.color.white),
                     checkedTrackColor = colorResource(R.color.appBlueLight),
                     uncheckedTrackColor = colorResource(R.color.gray)

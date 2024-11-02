@@ -8,14 +8,17 @@ import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 
 @Composable
@@ -71,7 +74,13 @@ fun TabView(tabBarItems: List<TabBarItem>, onNavigate: (String) -> Unit) {
                         title = tabBarItem.title
                     )
                 },
-                label = { Text(tabBarItem.title) })
+                label = { Text(tabBarItem.title) },
+                colors = NavigationBarItemDefaults.colors(
+                    indicatorColor = Color.Transparent,
+                    selectedIconColor = MaterialTheme.colorScheme.primary,
+                    unselectedIconColor = MaterialTheme.colorScheme.onSurface
+                )
+            )
         }
     }
 }
@@ -83,12 +92,12 @@ fun TabBarIconView(
     unselectedIcon: ImageVector,
     title: String
 ) {
-        Icon(
-            imageVector = if (isSelected) {
-                selectedIcon
-            } else {
-                unselectedIcon
-            },
-            contentDescription = title
-        )
+    Icon(
+        imageVector = if (isSelected) {
+            selectedIcon
+        } else {
+            unselectedIcon
+        },
+        contentDescription = title
+    )
 }

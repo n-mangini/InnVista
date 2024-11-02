@@ -62,7 +62,9 @@ fun HotelItem(
             .padding(padding)
             .clickable { onItemClick(hotel) },
         shape = RoundedCornerShape(cornerRadius),
-        colors = CardDefaults.cardColors(containerColor = Color.White)
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surface
+        )
     ) {
         Row(
             modifier = Modifier.padding(padding),
@@ -122,6 +124,7 @@ fun HotelItem(
                 Text(
                     text = hotel.price,
                     style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.primary,
                     modifier = Modifier
                         .align(Alignment.End)
                 )

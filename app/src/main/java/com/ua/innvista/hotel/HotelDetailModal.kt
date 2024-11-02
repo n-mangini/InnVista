@@ -99,7 +99,7 @@ fun HotelDetailModal(
                 Text(
                     text = hotel.price,
                     style = MaterialTheme.typography.titleMedium,
-                    color = colorResource(id = R.color.appBlue),
+                    color = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.padding(top = padding)
                 )
 
@@ -108,7 +108,7 @@ fun HotelDetailModal(
                 TextButton(
                     onClick = { onDismissRequest() },
                     colors = ButtonDefaults.textButtonColors(
-                        contentColor = colorResource(id = R.color.appBlue)
+                        contentColor = MaterialTheme.colorScheme.primary
                     ),
                     modifier = Modifier.align(Alignment.End)
                 ) {
