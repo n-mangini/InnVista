@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">InVista</string>
+    <string name="app_name">InnVista</string>
     <string name="ask_user_name">Por favor ingresa tu nombre completo</string>
     <string name="username">nombre y apellido</string>
     <string name="save">Ahorrar</string>
@@ -10,13 +10,13 @@
     <string name="delete_from_wishlist">Eliminar de la lista de deseos</string>
     <string name="location">Ubicación</string>
     <string name="search_hotels">Buscar hoteles…</string>
-    <string name="retry">Rever</string>
+    <string name="retry">Reintentar</string>
     <string name="loadhotels">Cargar hoteles</string>
     <string name="added_to_wishlist">Añadido a la lista de deseos</string>
     <string name="already_in_wishlist">El hotel ya existe en la lista de deseos.</string>
     <string name="add_to_wishlist">Añadir a la lista de deseos</string>
     <string name="remove_from_wishlist">Eliminar de la lista de deseos</string>
-    <string name="close">Cerca</string>
+    <string name="close">Cerrar</string>
     <string name="this_are_the_notifications">Estas son las notificaciones</string>
     <string name="fetch_api_fail_toast">No se pudieron cargar los hoteles</string>
 </resources>
