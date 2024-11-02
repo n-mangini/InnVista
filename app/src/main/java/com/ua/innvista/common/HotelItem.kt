@@ -33,8 +33,13 @@ import coil.compose.AsyncImage
 import com.ua.innvista.R
 import com.ua.innvista.hotel.WishlistIconButton
 import com.ua.innvista.hotel.HotelModel
-import com.ua.innvista.ui.Dimensions
-
+import com.ua.innvista.ui.theme.cornerRadius
+import com.ua.innvista.ui.theme.iconSize
+import com.ua.innvista.ui.theme.imgHeight
+import com.ua.innvista.ui.theme.imgWidth
+import com.ua.innvista.ui.theme.padding
+import com.ua.innvista.ui.theme.spacer
+import com.ua.innvista.ui.theme.spacerBig
 
 /**
  * Reusable HotelItem composable
@@ -54,20 +59,20 @@ fun HotelItem(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(Dimensions.padding)
+            .padding(padding)
             .clickable { onItemClick(hotel) },
-        shape = RoundedCornerShape(Dimensions.cornerRadius),
+        shape = RoundedCornerShape(cornerRadius),
         colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
         Row(
-            modifier = Modifier.padding(Dimensions.padding),
+            modifier = Modifier.padding(padding),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Box(
                 modifier = Modifier
-                    .width(Dimensions.imgWidth)
-                    .height(Dimensions.imgHeight)
-                    .clip(RoundedCornerShape(Dimensions.cornerRadius))
+                    .width(imgWidth)
+                    .height(imgHeight)
+                    .clip(RoundedCornerShape(cornerRadius))
             ) {
                 AsyncImage(
                     model = hotel.imgUrl,
@@ -79,7 +84,7 @@ fun HotelItem(
                 )
             }
 
-            Spacer(modifier = Modifier.width(Dimensions.spacerBig))
+            Spacer(modifier = Modifier.width(spacerBig))
 
             Column {
                 Row(
@@ -101,19 +106,19 @@ fun HotelItem(
                         imageVector = Icons.Filled.LocationOn,
                         contentDescription = stringResource(R.string.location),
                         modifier = Modifier
-                            .size(Dimensions.iconSize)
+                            .size(iconSize)
                             .align(Alignment.Top)
                     )
-                    Spacer(modifier = Modifier.size(Dimensions.spacer))
+                    Spacer(modifier = Modifier.size(spacer))
                     Text(
                         text = hotel.location,
                         style = MaterialTheme.typography.bodySmall,
                         modifier = Modifier.align(Alignment.Top)
                     )
                 }
-                Spacer(modifier = Modifier.size(Dimensions.spacer))
+                Spacer(modifier = Modifier.size(spacer))
                 Text(text = hotel.description, style = MaterialTheme.typography.bodyMedium)
-                Spacer(modifier = Modifier.size(Dimensions.spacer))
+                Spacer(modifier = Modifier.size(spacer))
                 Text(
                     text = hotel.price,
                     style = MaterialTheme.typography.titleMedium,

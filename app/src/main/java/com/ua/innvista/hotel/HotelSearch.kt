@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.Button
@@ -35,7 +34,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.ua.innvista.R
 import com.ua.innvista.common.HotelItem
 import com.ua.innvista.common.SearchBar
-import com.ua.innvista.ui.Dimensions
+import com.ua.innvista.ui.theme.actionIconSize
+import com.ua.innvista.ui.theme.progressSize
 import com.ua.innvista.utils.showToast
 import com.ua.innvista.wishlist.WishlistViewModel
 
@@ -126,7 +126,7 @@ fun WishlistIconButton(isInWishlist: Boolean, onIconClick: () -> Unit) {
                 if (isInWishlist) R.string.remove_from_wishlist else R.string.add_to_wishlist
             ),
             tint = if (isInWishlist) colorResource(id = R.color.star) else colorResource(id = R.color.gray),
-            modifier = Modifier.size(Dimensions.actionIconSize)
+            modifier = Modifier.size(actionIconSize)
         )
     }
 }
@@ -136,7 +136,7 @@ fun LoadingView() {
     Box(modifier = Modifier.fillMaxSize()) {
         CircularProgressIndicator(
             modifier = Modifier
-                .size(Dimensions.progressSize)
+                .size(progressSize)
                 .align(Alignment.Center),
             color = colorResource(id = R.color.appBlueLight),
             trackColor = colorResource(id = R.color.appBlue),

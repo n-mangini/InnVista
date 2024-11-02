@@ -9,14 +9,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.ua.innvista.R
-import com.ua.innvista.ui.Dimensions
+import com.ua.innvista.ui.theme.padding
 
 @Composable
 fun SearchBar(query: String, onQueryChanged: (String) -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(Dimensions.padding)
+            .padding(padding)
     ) {
         TextField(
             value = query,

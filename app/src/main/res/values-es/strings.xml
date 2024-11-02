@@ -2,7 +2,7 @@
     <string name="app_name">InnVista</string>
     <string name="ask_user_name">Por favor ingresa tu nombre completo</string>
     <string name="username">nombre y apellido</string>
-    <string name="save">Ahorrar</string>
+    <string name="save">Guardar</string>
     <string name="dark_mode">Modo oscuro</string>
     <string name="profile_icon">Icono de perfil</string>
     <string name="removed_from_wishlist">Eliminado de la lista de deseos</string>

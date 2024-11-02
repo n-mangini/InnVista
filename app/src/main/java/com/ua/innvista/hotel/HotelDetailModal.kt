@@ -23,14 +23,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.window.Dialog
 import coil.compose.AsyncImage
 import com.ua.innvista.R
-import com.ua.innvista.ui.Dimensions
+import com.ua.innvista.ui.theme.cornerRadius
+import com.ua.innvista.ui.theme.iconSize
+import com.ua.innvista.ui.theme.imgHeight
+import com.ua.innvista.ui.theme.padding
+import com.ua.innvista.ui.theme.paddingBig
+import com.ua.innvista.ui.theme.spacer
+import com.ua.innvista.ui.theme.spacerBig
+import com.ua.innvista.ui.theme.spacerMedium
 
 @Composable
 fun HotelDetailModal(
@@ -39,12 +45,12 @@ fun HotelDetailModal(
 ) {
     Dialog(onDismissRequest = onDismissRequest) {
         Surface(
-            shape = RoundedCornerShape(Dimensions.cornerRadius),
+            shape = RoundedCornerShape(cornerRadius),
             color = MaterialTheme.colorScheme.surface,
-            modifier = Modifier.padding(Dimensions.padding)
+            modifier = Modifier.padding(padding)
         ) {
             Column(
-                modifier = Modifier.padding(Dimensions.paddingBig)
+                modifier = Modifier.padding(paddingBig)
             ) {
                 AsyncImage(
                     model = hotel.imgUrl,
@@ -53,51 +59,51 @@ fun HotelDetailModal(
                     error = painterResource(id = R.drawable.innvista),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(Dimensions.imgHeight)
-                        .clip(RoundedCornerShape(Dimensions.cornerRadius)),
+                        .height(imgHeight)
+                        .clip(RoundedCornerShape(cornerRadius)),
                     contentScale = ContentScale.Crop
                 )
 
-                Spacer(modifier = Modifier.height(Dimensions.spacerBig))
+                Spacer(modifier = Modifier.height(spacerBig))
 
                 Text(
                     text = hotel.title,
                     style = MaterialTheme.typography.titleLarge,
-                    modifier = Modifier.padding(bottom = Dimensions.padding)
+                    modifier = Modifier.padding(bottom = padding)
                 )
 
                 Text(
                     text = hotel.description,
                     style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier.padding(bottom = Dimensions.padding)
+                    modifier = Modifier.padding(bottom = padding)
                 )
 
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(bottom = Dimensions.padding)
+                    modifier = Modifier.padding(bottom = padding)
                 ) {
                     Icon(
                         imageVector = Icons.Default.LocationOn,
                         contentDescription = stringResource(id = R.string.location),
-                        modifier = Modifier.size(Dimensions.iconSize),
+                        modifier = Modifier.size(iconSize),
                     )
-                    Spacer(modifier = Modifier.width(Dimensions.spacer))
+                    Spacer(modifier = Modifier.width(spacer))
                     Text(
                         text = hotel.location,
                         style = MaterialTheme.typography.bodySmall
                     )
                 }
 
-                Spacer(modifier = Modifier.height(Dimensions.spacerMedium))
+                Spacer(modifier = Modifier.height(spacerMedium))
 
                 Text(
                     text = hotel.price,
                     style = MaterialTheme.typography.titleMedium,
                     color = colorResource(id = R.color.appBlue),
-                    modifier = Modifier.padding(top = Dimensions.padding)
+                    modifier = Modifier.padding(top = padding)
                 )
 
-                Spacer(modifier = Modifier.height(Dimensions.spacerMedium))
+                Spacer(modifier = Modifier.height(spacerMedium))
 
                 TextButton(
                     onClick = { onDismissRequest() },

@@ -9,17 +9,15 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.ua.innvista.R
-import com.ua.innvista.ui.Dimensions
+import com.ua.innvista.ui.theme.paddingBig
 
 @Composable
 fun NavigationDrawerSheet(
     onClose: () -> Unit,
 ) {
     ModalDrawerSheet {
-        Column(modifier = Modifier.padding(Dimensions.paddingBig)) {
+        Column(modifier = Modifier.padding(paddingBig)) {
             Icon(
                 imageVector = Icons.Default.Close,
                 contentDescription = "",

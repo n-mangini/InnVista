@@ -17,7 +17,6 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
@@ -25,7 +24,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.ua.innvista.R
 import com.ua.innvista.common.TabBarBadgeView
-import com.ua.innvista.ui.Dimensions
+import com.ua.innvista.ui.theme.padding
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -47,7 +46,7 @@ fun TopBar(
                 imageVector = if (!showBackButton) Icons.Filled.Menu else Icons.AutoMirrored.Filled.ArrowBack,
                 contentDescription = "",
                 modifier = Modifier
-                    .padding(Dimensions.padding)
+                    .padding(padding)
                     .clickable {
                         if (showBackButton) {
                             navController.popBackStack()
@@ -71,7 +70,7 @@ fun TopBar(
                 }
             }
         },
-        modifier = Modifier.padding(Dimensions.padding),
+        modifier = Modifier.padding(padding),
     )
 }
 
