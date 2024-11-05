@@ -17,29 +17,40 @@ class ProfileViewModel @Inject constructor(
     @ApplicationContext val context: Context,
 ) : ViewModel() {
 
-    private var _userName = MutableStateFlow("")
-    val userName = _userName.asStateFlow()
+    private var _name = MutableStateFlow("")
+    val name = _name.asStateFlow()
+
+    private var _surname = MutableStateFlow("")
+    val surname = _surname.asStateFlow()
 
     init {
-        getNameFromDataStore()
+        getUserFromDataStore()
     }
 
-    private fun getNameFromDataStore() {
+    private fun getUserFromDataStore() {
         viewModelScope.launch {
-            getFromDataStore(context, PreferencesKeys.USER_NAME_KEY).collect {
-                _userName.value = it ?: ""
+            getFromDataStore(context, PreferencesKeys.NAME_KEY).collect {
+                _name.value = it ?: ""
+            }
+            getFromDataStore(context, PreferencesKeys.SURNAME_KEY).collect {
+                _surname.value = it ?: ""
             }
         }
     }
 
-    fun saveToDataStore(username: String) {
+    fun saveUserToDataStore(name: String, surname: String) {
         viewModelScope.launch {
             com.ua.innvista.data.saveToDataStore(
                 context,
-                username,
-                PreferencesKeys.USER_NAME_KEY
+                name,
+                PreferencesKeys.NAME_KEY
             )
-            _userName.value = username
+            com.ua.innvista.data.saveToDataStore(
+                context,
+                surname,
+                PreferencesKeys.SURNAME_KEY
+            )
+            _surname.value = name
         }
     }
 }

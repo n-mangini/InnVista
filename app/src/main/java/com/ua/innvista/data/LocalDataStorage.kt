@@ -11,7 +11,8 @@ import kotlinx.coroutines.flow.map
 val Context.dataStore by preferencesDataStore(name = "STAYINN_DATA_STORE")
 
 object PreferencesKeys {
-    val USER_NAME_KEY = stringPreferencesKey("user_name_key")
+    val NAME_KEY = stringPreferencesKey("name_key")
+    val SURNAME_KEY = stringPreferencesKey("surname_key")
 }
 
 suspend fun <T> saveToDataStore(context: Context, value: T, key: Preferences.Key<T>) {

@@ -1,9 +1,11 @@
 package com.ua.innvista.profile
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -11,7 +13,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
@@ -39,48 +40,66 @@ import com.ua.innvista.ui.theme.spacerBig
 @Composable
 fun Profile() {
     val viewModel = hiltViewModel<ProfileViewModel>()
-    val userName by viewModel.userName.collectAsState()
+    val name by viewModel.name.collectAsState()
+    val surname by viewModel.surname.collectAsState()
 
-    if (userName.isEmpty()) {
-        SetUsername(
-            onSave = { viewModel.saveToDataStore(it) }
+    if (name.isEmpty()) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
         )
+        {
+            SetUsername(
+                onSave = { enteredName, enteredSurname ->
+                    viewModel.saveUserToDataStore(
+                        enteredName,
+                        enteredSurname
+                    )
+                }
+            )
+        }
     } else {
         UserProfile(
-            userName = userName
+            name = name,
+            surname = surname
         )
     }
 }
 
 @Composable
 fun SetUsername(
-    onSave: (String) -> Unit
+    onSave: (String, String) -> Unit
 ) {
-    var userNameLocal by remember { mutableStateOf("") }
+    var name by remember { mutableStateOf("") }
+    var surname by remember { mutableStateOf("") }
 
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = stringResource(R.string.ask_user_name),
+            text = stringResource(R.string.profile_prompt),
             fontWeight = FontWeight.Bold,
         )
 
         TextField(
-            value = userNameLocal,
-            onValueChange = { userNameLocal = it },
+            value = name,
+            onValueChange = { name = it },
             label = {
-                Text(text = stringResource(R.string.username))
+                Text(text = stringResource(R.string.name))
+            },
+        )
+
+        TextField(
+            value = surname,
+            onValueChange = { surname = it },
+            label = {
+                Text(text = stringResource(R.string.surname))
             },
         )
 
         Button(
-            onClick = { onSave(userNameLocal) },
-            colors = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.primary,
-                contentColor = colorResource(R.color.black)
-            )
+            onClick = { onSave(name, surname) },
         ) {
             Text(text = stringResource(R.string.save))
         }
@@ -88,11 +107,11 @@ fun SetUsername(
 }
 
 @Composable
-fun UserProfile(userName: String) {
+fun UserProfile(name: String, surname: String) {
     var isToggled by remember { mutableStateOf(false) }
 
     Column(
-        modifier = Modifier.padding(paddingBig),
+        modifier = Modifier.padding(paddingBig)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -107,7 +126,7 @@ fun UserProfile(userName: String) {
             Spacer(modifier = Modifier.width(spacerBig))
 
             Text(
-                text = userName,
+                text = "$name $surname",
                 style = MaterialTheme.typography.headlineLarge,
                 modifier = Modifier.weight(1f)
             )
@@ -140,11 +159,11 @@ fun UserProfile(userName: String) {
 @Composable
 @Preview
 fun PreviewProfile() {
-    UserProfile(userName = "Marcelo")
+    UserProfile(name = "Marcelo", surname = "Gallardo")
 }
 
 @Composable
 @Preview
 fun PreviewSetUsername() {
-    SetUsername {}
+    SetUsername { _, _ -> }
 }

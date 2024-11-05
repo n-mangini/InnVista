@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">InnVista</string>
-    <string name="ask_user_name">Please enter your full name</string>
-    <string name="username">first and last name</string>
+    <string name="profile_prompt">Please enter your info</string>
+    <string name="name">Your name</string>
+    <string name="surname">Your surname</string>
     <string name="save">Save</string>
     <string name="dark_mode">Dark Mode</string>
     <string name="profile_icon">Profile icon</string>
