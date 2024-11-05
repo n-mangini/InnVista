@@ -20,4 +20,8 @@
     <string name="close">Cerrar</string>
     <string name="this_are_the_notifications">Estas son las notificaciones</string>
     <string name="fetch_api_fail_toast">No se pudieron cargar los hoteles</string>
+    <string name="logout">Cerrar Sesion</string>
+    <string name="logged_out">Sesion Cerrada</string>
+    <string name="already_logged_out">La sesion ya esta cerrada</string>
+    <string name="welcome_drawer">Bienvenido</string>
 </resources>

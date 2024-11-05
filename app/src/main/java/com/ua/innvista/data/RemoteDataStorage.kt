@@ -1,9 +1,13 @@
 package com.ua.innvista.data
 
 import android.content.Context
+import androidx.compose.ui.platform.LocalContext
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @Database(entities = [HotelEntity::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
@@ -22,6 +26,12 @@ abstract class AppDatabase : RoomDatabase() {
                 ).build()
                 INSTANCE = instance
                 instance
+            }
+        }
+
+        fun clearDatabase(context: Context) {
+            CoroutineScope(Dispatchers.IO).launch {
+                getDatabase(context.applicationContext).clearAllTables()
             }
         }
     }

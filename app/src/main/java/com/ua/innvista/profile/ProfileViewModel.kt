@@ -3,10 +3,13 @@ package com.ua.innvista.profile
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ua.innvista.data.AppDatabase.Companion.clearDatabase
 import com.ua.innvista.data.PreferencesKeys
+import com.ua.innvista.data.clearDataStore
 import com.ua.innvista.data.getFromDataStore
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -23,8 +26,17 @@ class ProfileViewModel @Inject constructor(
     private var _surname = MutableStateFlow("")
     val surname = _surname.asStateFlow()
 
+    private val _isLoggedIn = MutableStateFlow<Boolean?>(null)
+    val isLoggedIn = _isLoggedIn.asStateFlow()
+
     init {
         getUserFromDataStore()
+
+        viewModelScope.launch {
+            getFromDataStore(context, PreferencesKeys.NAME_KEY).collect { loggedIn ->
+                _isLoggedIn.value = loggedIn != null
+            }
+        }
     }
 
     private fun getUserFromDataStore() {
@@ -53,5 +65,10 @@ class ProfileViewModel @Inject constructor(
             _name.value = name
             _surname.value = surname
         }
+    }
+
+    suspend fun logout(context: Context) {
+        clearDataStore(context)
+        clearDatabase(context)
     }
 }

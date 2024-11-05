@@ -27,3 +27,9 @@ fun <T> getFromDataStore(context: Context, key: Preferences.Key<T>): Flow<T?> {
             preferences[key]
         }
 }
+
+suspend fun clearDataStore(context: Context) {
+    context.dataStore.edit { preferences ->
+        preferences.clear()
+    }
+}
