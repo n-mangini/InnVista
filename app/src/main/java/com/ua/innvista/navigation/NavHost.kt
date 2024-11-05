@@ -8,7 +8,6 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.ua.innvista.notifications.Notifications
 import com.ua.innvista.profile.Profile
 import com.ua.innvista.hotel.HotelSearch
 import com.ua.innvista.ui.theme.padding
@@ -29,9 +28,6 @@ fun NavHostComposable(
             .padding(innerPadding)
             .padding(padding)
     ) {
-        composable(route = Screens.Notifications.name) {
-            Notifications()
-        }
         composable(route = Screens.Search.name) {
             HotelSearch()
         }

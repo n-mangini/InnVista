@@ -59,17 +59,6 @@ fun TopBar(
         title = {
             Text(text = stringResource(R.string.app_name))
         },
-        actions = {
-            Row {
-                BadgedBox(badge = { TabBarBadgeView(912) }) {
-                    Icon(
-                        imageVector = Icons.Filled.Notifications,
-                        contentDescription = "",
-                        modifier = Modifier.clickable { navController.navigate(Screens.Notifications.name) }
-                    )
-                }
-            }
-        },
         modifier = Modifier.padding(padding),
     )
 }

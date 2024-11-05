@@ -4,8 +4,6 @@ enum class Screens {
     Profile,
     Search,
     Wishlist,
-
-    Notifications,
 }
 
 val basePages = listOf(

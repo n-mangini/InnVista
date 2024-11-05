@@ -18,7 +18,6 @@
     <string name="add_to_wishlist">Add to wishlist</string>
     <string name="remove_from_wishlist">Delete from wishlist</string>
     <string name="close">Close</string>
-    <string name="this_are_the_notifications">This are the notifications</string>
     <string name="fetch_api_fail_toast">Hotels could not be loaded</string>
     <string name="logout">Logout</string>
     <string name="logged_out">Logged out</string>

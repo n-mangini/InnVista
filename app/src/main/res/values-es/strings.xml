@@ -18,7 +18,6 @@
     <string name="add_to_wishlist">Añadir a la lista de deseos</string>
     <string name="remove_from_wishlist">Eliminar de la lista de deseos</string>
     <string name="close">Cerrar</string>
-    <string name="this_are_the_notifications">Estas son las notificaciones</string>
     <string name="fetch_api_fail_toast">No se pudieron cargar los hoteles</string>
     <string name="logout">Cerrar Sesion</string>
     <string name="logged_out">Sesion Cerrada</string>
