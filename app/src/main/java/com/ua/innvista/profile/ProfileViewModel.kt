@@ -50,7 +50,8 @@ class ProfileViewModel @Inject constructor(
                 surname,
                 PreferencesKeys.SURNAME_KEY
             )
-            _surname.value = name
+            _name.value = name
+            _surname.value = surname
         }
     }
 }
