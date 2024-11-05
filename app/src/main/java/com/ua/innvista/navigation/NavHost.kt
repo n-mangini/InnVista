@@ -15,7 +15,12 @@ import com.ua.innvista.ui.theme.padding
 import com.ua.innvista.wishlist.Wishlist
 
 @Composable
-fun NavHostComposable(innerPadding: PaddingValues, navController: NavHostController) {
+fun NavHostComposable(
+    innerPadding: PaddingValues,
+    navController: NavHostController,
+    isDarkModeEnabled: Boolean,
+    onToggleDarkMode: (Boolean) -> Unit
+) {
     NavHost(
         navController = navController,
         startDestination = Screens.Search.name,
@@ -34,7 +39,10 @@ fun NavHostComposable(innerPadding: PaddingValues, navController: NavHostControl
             Wishlist()
         }
         composable(route = Screens.Profile.name) {
-            Profile()
+            Profile(
+                isDarkModeEnabled = isDarkModeEnabled,
+                onToggleDarkMode = onToggleDarkMode
+            )
         }
     }
 }

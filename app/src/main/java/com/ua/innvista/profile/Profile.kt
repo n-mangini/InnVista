@@ -38,7 +38,10 @@ import com.ua.innvista.ui.theme.paddingBig
 import com.ua.innvista.ui.theme.spacerBig
 
 @Composable
-fun Profile() {
+fun Profile(
+    isDarkModeEnabled: Boolean,
+    onToggleDarkMode: (Boolean) -> Unit
+) {
     val viewModel = hiltViewModel<ProfileViewModel>()
     val name by viewModel.name.collectAsState()
     val surname by viewModel.surname.collectAsState()
@@ -61,7 +64,9 @@ fun Profile() {
     } else {
         UserProfile(
             name = name,
-            surname = surname
+            surname = surname,
+            isDarkModeEnabled = isDarkModeEnabled,
+            onToggleDarkMode = onToggleDarkMode
         )
     }
 }
@@ -107,7 +112,12 @@ fun SetUsername(
 }
 
 @Composable
-fun UserProfile(name: String, surname: String) {
+fun UserProfile(
+    name: String,
+    surname: String,
+    isDarkModeEnabled: Boolean,
+    onToggleDarkMode: (Boolean) -> Unit
+) {
     var isToggled by remember { mutableStateOf(false) }
 
     Column(
@@ -143,8 +153,8 @@ fun UserProfile(name: String, surname: String) {
             )
 
             Switch(
-                checked = isToggled,
-                onCheckedChange = { isToggled = it },
+                checked = isDarkModeEnabled,
+                onCheckedChange = onToggleDarkMode,
                 colors = SwitchDefaults.colors(
                     checkedThumbColor = MaterialTheme.colorScheme.primary,
                     uncheckedThumbColor = colorResource(R.color.white),
@@ -159,7 +169,11 @@ fun UserProfile(name: String, surname: String) {
 @Composable
 @Preview
 fun PreviewProfile() {
-    UserProfile(name = "Marcelo", surname = "Gallardo")
+    UserProfile(
+        name = "Marcelo",
+        surname = "Gallardo",
+        isDarkModeEnabled = false,
+        onToggleDarkMode = { })
 }
 
 @Composable
