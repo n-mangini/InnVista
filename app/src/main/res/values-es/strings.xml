@@ -23,4 +23,7 @@
     <string name="logged_out">Sesion Cerrada</string>
     <string name="already_logged_out">La sesion ya esta cerrada</string>
     <string name="welcome_drawer">Bienvenido</string>
+    <string name="authentication_succeeded">Auntenticado exitosamente</string>
+    <string name="authenticate">Autenticarse</string>
+    <string name="log_in_using_your_biometrics_or_device_credentials">Inicia sesion usando tus biometricos o credenciales</string>
 </resources>

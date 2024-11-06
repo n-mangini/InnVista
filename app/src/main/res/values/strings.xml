@@ -23,4 +23,7 @@
     <string name="logged_out">Logged out</string>
     <string name="already_logged_out">Session is already closed</string>
     <string name="welcome_drawer">Welcome</string>
+    <string name="authentication_succeeded">Authentication succeeded</string>
+    <string name="authenticate">Authenticate</string>
+    <string name="log_in_using_your_biometrics_or_device_credentials">Log in using your biometrics or device credentials</string>
 </resources>
