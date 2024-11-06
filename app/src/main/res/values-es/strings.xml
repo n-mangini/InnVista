@@ -26,4 +26,14 @@
     <string name="authentication_succeeded">Auntenticado exitosamente</string>
     <string name="authenticate">Autenticarse</string>
     <string name="log_in_using_your_biometrics_or_device_credentials">Inicia sesion usando tus biometricos o credenciales</string>
+    <string name="authentication_error">Error de autenticación</string>
+    <string name="authentication_failed">La autenticación falló</string>
+    <string name="this_phone_does_not_support_biometric_authentication">Este celular no admite la autenticación biométrica.</string>
+    <string name="biometric_hardware_is_currently_unavailable">El hardware biométrico no está disponible actualmente.</string>
+    <string name="security_update_required_for_biometric_authentication">Se requiere una actualización de seguridad para la autenticación biométrica.</string>
+    <string name="biometric_authentication_is_not_supported_on_this_android_version">La autenticación biométrica no es compatible con esta versión de Android.</string>
+    <string name="no_biometric_credentials_enrolled_use_device_credentials_to_authenticate">No hay credenciales biométricas registradas. Utilice las credenciales del dispositivo para autenticarse.</string>
+    <string name="biometric_authentication_is_not_available">La autenticación biométrica no está disponible.</string>
+    <string name="set_up_biometrics">Set up biometrics</string>
+
 </resources>
