@@ -11,7 +11,7 @@ val spacer = 6.dp
 val spacerMedium = 8.dp
 val spacerBig = 16.dp
 
-// Corner radius (you had sp, which is usually for text size, but I assume it's dp)
+// Corner radius
 val cornerRadius = 6.dp
 
 // Icons

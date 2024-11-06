@@ -27,7 +27,6 @@ class ProfileViewModel @Inject constructor(
     val surname = _surname.asStateFlow()
 
     private val _isLoggedIn = MutableStateFlow<Boolean?>(null)
-    val isLoggedIn = _isLoggedIn.asStateFlow()
 
     init {
         getUserFromDataStore()
