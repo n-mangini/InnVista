@@ -212,35 +212,34 @@ fun BiometricAuthentication(
 
 @Composable
 fun EnrollUserBiometrics(context: Context) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(paddingBig),
-        contentAlignment = Alignment.Center
-    ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(paddingBig)
+    InnVistaTheme {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingBig),
+            contentAlignment = Alignment.Center
         ) {
-            Text(
-                text = stringResource(R.string.no_biometric_credentials_enrolled_use_device_credentials_to_authenticate),
-                modifier = Modifier.padding(padding)
-            )
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(paddingBig)
+            ) {
+                Text(
+                    text = stringResource(R.string.no_biometric_credentials_enrolled_use_device_credentials_to_authenticate),
+                    modifier = Modifier.padding(padding)
+                )
 
-            Button(
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.primary
-                ),
-                onClick = {
-                    val enrollIntent = Intent(Settings.ACTION_BIOMETRIC_ENROLL).apply {
-                        putExtra(
-                            Settings.EXTRA_BIOMETRIC_AUTHENTICATORS_ALLOWED,
-                            BIOMETRIC_STRONG or DEVICE_CREDENTIAL
-                        )
-                    }
-                    context.startActivity(enrollIntent)
-                }) {
-                Text(stringResource(R.string.set_up_biometrics))
+                Button(
+                    onClick = {
+                        val enrollIntent = Intent(Settings.ACTION_BIOMETRIC_ENROLL).apply {
+                            putExtra(
+                                Settings.EXTRA_BIOMETRIC_AUTHENTICATORS_ALLOWED,
+                                BIOMETRIC_STRONG or DEVICE_CREDENTIAL
+                            )
+                        }
+                        context.startActivity(enrollIntent)
+                    }) {
+                    Text(stringResource(R.string.set_up_biometrics))
+                }
             }
         }
     }

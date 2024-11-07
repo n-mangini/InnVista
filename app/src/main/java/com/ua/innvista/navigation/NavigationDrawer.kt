@@ -135,10 +135,7 @@ fun LogoutWarningModal(
                         onClick = {
                             onDismissRequest()
                             onConfirmLogout()
-                        },
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = MaterialTheme.colorScheme.primary
-                        )
+                        }
                     ) {
                         Text(text = stringResource(R.string.confirm_logout))
                     }

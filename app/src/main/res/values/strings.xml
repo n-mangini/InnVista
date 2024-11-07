@@ -39,4 +39,7 @@
     <string name="logout_warning_message">Logging out will delete all your preferences, including saved hotels and dark mode settings. Do you want to continue?</string>
     <string name="cancel">Cancel</string>
     <string name="confirm_logout">Confirm Logout</string>
+    <string name="app_logo">App logo</string>
+    <string name="browse_and_add_items_to_your_wishlist">Browse and add items to your wishlist</string>
+    <string name="start_searching">Start searching</string>
 </resources>

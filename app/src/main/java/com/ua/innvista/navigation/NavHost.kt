@@ -30,7 +30,9 @@ fun NavHostComposable(
             HotelSearch()
         }
         composable(route = Screens.Wishlist.name) {
-            Wishlist()
+            Wishlist(onSearchClick = {
+                navController.navigate(Screens.Search.name)
+            })
         }
         composable(route = Screens.Profile.name) {
             Profile()
