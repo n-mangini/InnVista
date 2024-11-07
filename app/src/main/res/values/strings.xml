@@ -42,4 +42,5 @@
     <string name="app_logo">App logo</string>
     <string name="browse_and_add_items_to_your_wishlist">Browse and add items to your wishlist</string>
     <string name="start_searching">Start searching</string>
+    <string name="fill_all_fields">Fill all fields</string>
 </resources>

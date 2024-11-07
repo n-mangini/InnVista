@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
@@ -33,9 +34,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ua.innvista.R
+import com.ua.innvista.ui.theme.padding
 import com.ua.innvista.ui.theme.paddingBig
 import com.ua.innvista.ui.theme.profileIconSize
-import com.ua.innvista.ui.theme.spacerBig
+import com.ua.innvista.ui.theme.spacer
 
 @Composable
 fun Profile() {
@@ -77,39 +79,59 @@ fun SetUsername(
 ) {
     var name by remember { mutableStateOf("") }
     var surname by remember { mutableStateOf("") }
+    val isFormValid = name.isNotBlank() && surname.isNotBlank()
 
     Column(
-        verticalArrangement = Arrangement.Center,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(paddingBig),
+        verticalArrangement = Arrangement.spacedBy(paddingBig, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text = stringResource(R.string.profile_prompt),
+            style = MaterialTheme.typography.titleLarge,
             fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(bottom = padding)
         )
 
         TextField(
             value = name,
             onValueChange = { name = it },
-            label = {
-                Text(text = stringResource(R.string.name))
-            },
+            label = { Text(text = stringResource(R.string.name)) },
+            singleLine = true,
+            modifier = Modifier.fillMaxWidth()
         )
 
         TextField(
             value = surname,
             onValueChange = { surname = it },
-            label = {
-                Text(text = stringResource(R.string.surname))
-            },
+            label = { Text(text = stringResource(R.string.surname)) },
+            singleLine = true,
+            modifier = Modifier.fillMaxWidth()
         )
 
         Button(
             onClick = { onSave(name, surname) },
+            enabled = isFormValid,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = paddingBig),
         ) {
             Text(text = stringResource(R.string.save))
         }
+
+        if (!isFormValid) {
+            Text(
+                text = stringResource(R.string.fill_all_fields),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.error,
+                modifier = Modifier.padding(top = padding)
+            )
+        }
     }
 }
+
 
 @Composable
 fun UserProfile(
@@ -121,35 +143,54 @@ fun UserProfile(
     var isToggled by remember { mutableStateOf(isDarkModeEnabled) }
 
     Column(
-        modifier = Modifier.padding(paddingBig)
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(paddingBig),
+        verticalArrangement = Arrangement.spacedBy(paddingBig, Alignment.Top),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = paddingBig),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
                 imageVector = Icons.Default.Person,
                 contentDescription = stringResource(R.string.profile_icon),
                 modifier = Modifier.size(profileIconSize),
+                tint = MaterialTheme.colorScheme.primary
             )
 
-            Spacer(modifier = Modifier.width(spacerBig))
+            Spacer(modifier = Modifier.width(spacer))
 
             Text(
                 text = "$name $surname",
                 style = MaterialTheme.typography.headlineLarge,
-                modifier = Modifier.weight(1f)
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.weight(1f),
+                color = MaterialTheme.colorScheme.onBackground
             )
         }
 
+        HorizontalDivider(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = padding)
+        )
+
+        // Dark Mode Toggle
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = padding),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
                 text = stringResource(R.string.dark_mode),
-                style = MaterialTheme.typography.headlineSmall,
-                modifier = Modifier.weight(1f)
+                style = MaterialTheme.typography.titleMedium,
+                modifier = Modifier.weight(1f),
+                color = MaterialTheme.colorScheme.onBackground
             )
 
             Switch(
