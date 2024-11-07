@@ -76,11 +76,6 @@ class MainActivity : FragmentActivity() {
                 InnVistaTheme(darkTheme = isDarkModeEnabled) {
                     ModalNavigationDrawer(drawerContent = {
                         NavigationDrawerSheet(
-                            onClose = {
-                                scope.launch {
-                                    drawerState.close()
-                                }
-                            },
                             onLogoutConfirmed = { context ->
                                 scope.launch {
                                     viewModel.logout(context)
@@ -126,11 +121,6 @@ class MainActivity : FragmentActivity() {
                 )
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-
     }
 }
 

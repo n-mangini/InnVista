@@ -26,17 +26,20 @@ fun BottomBar(
     onNavigate: (String) -> Unit,
 ) {
     val searchTab = TabBarItem(
-        title = Screens.Search.name,
+        title = getScreenTitle(Screens.Search),
+        route = Screens.Search.name,
         selectedIcon = Icons.Filled.Search,
         unselectedIcon = Icons.Outlined.Search
     )
     val wishlistTab = TabBarItem(
-        title = Screens.Wishlist.name,
+        title = getScreenTitle(Screens.Wishlist),
+        route = Screens.Wishlist.name,
         selectedIcon = Icons.Filled.Star,
         unselectedIcon = Icons.Outlined.Star
     )
     val profileTab = TabBarItem(
-        title = Screens.Profile.name,
+        title = getScreenTitle(Screens.Profile),
+        route = Screens.Profile.name,
         selectedIcon = Icons.Filled.Person,
         unselectedIcon = Icons.Outlined.Person
     )
@@ -48,6 +51,7 @@ fun BottomBar(
 
 data class TabBarItem(
     val title: String,
+    val route: String,
     val selectedIcon: ImageVector,
     val unselectedIcon: ImageVector
 )
@@ -64,7 +68,7 @@ fun TabView(tabBarItems: List<TabBarItem>, onNavigate: (String) -> Unit) {
                 selected = selectedTabIndex == index,
                 onClick = {
                     selectedTabIndex = index
-                    onNavigate(tabBarItem.title)
+                    onNavigate(tabBarItem.route)
                 },
                 icon = {
                     TabBarIconView(

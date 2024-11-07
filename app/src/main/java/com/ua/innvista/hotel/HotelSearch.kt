@@ -86,8 +86,6 @@ fun HotelList(
     wishlistViewModel: WishlistViewModel
 ) {
     val context = LocalContext.current
-
-    // Collect the wishlist from the ViewModel as a state
     val wishlist by wishlistViewModel.wishlist.collectAsState(initial = emptyList())
 
     LazyColumn(modifier = Modifier.fillMaxSize()) {
@@ -95,7 +93,6 @@ fun HotelList(
 
             val isInWishlist = remember { mutableStateOf(false) }
 
-            // Launch a coroutine to check if the hotel is in the wishlist
             LaunchedEffect(wishlist) {
                 isInWishlist.value = wishlist.any { it.id == hotel.id }
             }

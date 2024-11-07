@@ -37,7 +37,6 @@ import com.ua.innvista.ui.theme.spacerBig
 
 @Composable
 fun NavigationDrawerSheet(
-    onClose: () -> Unit,
     onLogoutConfirmed: (Context) -> Unit,
     userName: String
 ) {
@@ -46,14 +45,6 @@ fun NavigationDrawerSheet(
 
     ModalDrawerSheet {
         Column(modifier = Modifier.padding(paddingBig)) {
-            Icon(
-                imageVector = Icons.Default.Close,
-                contentDescription = stringResource(R.string.close),
-                modifier = Modifier
-                    .clickable { onClose() }
-                    .align(Alignment.End)
-            )
-
             Spacer(modifier = Modifier.height(spacerBig))
 
             Text(
@@ -150,8 +141,16 @@ fun LogoutWarningModal(
 @Preview
 fun NavigationDrawerSheetPreview() {
     NavigationDrawerSheet(
-        onClose = {},
         onLogoutConfirmed = {},
         userName = "John Doe"
+    )
+}
+
+@Composable
+@Preview
+fun LogoutWarningModalPreview() {
+    LogoutWarningModal(
+        onDismissRequest = {},
+        onConfirmLogout = {}
     )
 }
