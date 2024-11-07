@@ -108,7 +108,8 @@ fun HotelItem(
                         contentDescription = stringResource(R.string.location),
                         modifier = Modifier
                             .size(iconSize)
-                            .align(Alignment.Top)
+                            .align(Alignment.Top),
+                        tint = MaterialTheme.colorScheme.secondary
                     )
                     Spacer(modifier = Modifier.size(spacer))
                     Text(
