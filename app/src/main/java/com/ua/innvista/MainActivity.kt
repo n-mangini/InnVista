@@ -82,14 +82,12 @@ class MainActivity : FragmentActivity() {
                                     drawerState.close()
                                 }
                             },
-                            //TODO check user logged in to show conditional toast
-                            onLogout = { context ->
+                            onLogoutConfirmed = { context ->
                                 scope.launch {
                                     viewModel.logout(context)
                                     drawerState.close()
                                 }
                                 showToast(context, getString(R.string.logged_out))
-                                navController.navigate(Screens.Profile.name)
                             },
                             userName = name
                         )

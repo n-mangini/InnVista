@@ -35,5 +35,9 @@
     <string name="no_biometric_credentials_enrolled_use_device_credentials_to_authenticate">No hay credenciales biométricas registradas. Utilice las credenciales del dispositivo para autenticarse.</string>
     <string name="biometric_authentication_is_not_available">La autenticación biométrica no está disponible.</string>
     <string name="set_up_biometrics">Set up biometrics</string>
+    <string name="logout_warning_title">Confirmar Cierre de Sesión</string>
+    <string name="logout_warning_message">Cerrar sesión eliminará todas tus preferencias, incluidos los hoteles guardados y la configuración de modo oscuro. ¿Deseas continuar?</string>
+    <string name="cancel">Cancelar</string>
+    <string name="confirm_logout">Confirmar Cierre de Sesión</string>
 
 </resources>
