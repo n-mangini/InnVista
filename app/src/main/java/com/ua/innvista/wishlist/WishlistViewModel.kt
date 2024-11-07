@@ -22,23 +22,12 @@ class WishlistViewModel @Inject constructor(
 
     val wishlist = appDatabase.hotelDao().getAllHotels().asFlow()
 
-    fun addHotel(hotelModel: HotelModel, onResult: (Boolean) -> Unit) {
-        viewModelScope.launch {
-            val isAdded = withContext(Dispatchers.IO) {
-                val existingHotel = appDatabase.hotelDao().getById(hotelModel.id)
-
-                if (existingHotel == null) {
-                    val hotelEntity = hotelModel.toEntity()
-                    appDatabase.hotelDao().insert(hotelEntity)
-                    true
-                } else {
-                    false
-                }
-            }
-            onResult(isAdded)
+    fun addHotel(hotelModel: HotelModel) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val hotelEntity = hotelModel.toEntity()
+            appDatabase.hotelDao().insert(hotelEntity)
         }
     }
-
 
     fun deleteHotel(hotelId: Long) {
         viewModelScope.launch {
@@ -46,9 +35,10 @@ class WishlistViewModel @Inject constructor(
         }
     }
 
-    suspend fun isHotelInWishlist(hotelId: Long): Boolean {
-        return withContext(Dispatchers.IO) {
-            appDatabase.hotelDao().getById(hotelId) != null
+    fun isHotelInWishlist(hotelId: Long, onResult: (Boolean) -> Unit) {
+        viewModelScope.launch {
+            val isInWishlist = appDatabase.hotelDao().getById(hotelId) != null
+            onResult(isInWishlist)
         }
     }
 }

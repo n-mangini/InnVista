@@ -1,6 +1,7 @@
 package com.ua.innvista.hotel
 
 import android.content.Context
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -167,17 +168,24 @@ fun handleAddToWishlist(
     context: Context, viewModel: WishlistViewModel,
     hotel: HotelModel
 ) {
-    viewModel.addHotel(hotel)
-    { wasAdded ->
-        if (wasAdded) {
+    Log.d("handleAddToWishlist", "Starting function for hotel ID: ${hotel.id}")
+
+    viewModel.isHotelInWishlist(hotel.id) { isInWishlist ->
+        Log.d("handleAddToWishlist", "isInWishlist result: $isInWishlist for hotel ID: ${hotel.id}")
+
+        if (isInWishlist) {
+            viewModel.deleteHotel(hotel.id)
+            Log.d("handleAddToWishlist", "Hotel removed from wishlist, ID: ${hotel.id}")
+            showToast(
+                context,
+                context.getString(R.string.removed_from_wishlist)
+            )
+        } else {
+            viewModel.addHotel(hotel)
+            Log.d("handleAddToWishlist", "Hotel added to wishlist, ID: ${hotel.id}")
             showToast(
                 context,
                 context.getString(R.string.added_to_wishlist)
-            )
-        } else {
-            showToast(
-                context,
-                context.getString(R.string.already_in_wishlist)
             )
         }
     }
