@@ -8,8 +8,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.ua.innvista.profile.Profile
 import com.ua.innvista.hotel.HotelSearch
+import com.ua.innvista.profile.Profile
 import com.ua.innvista.ui.theme.padding
 import com.ua.innvista.wishlist.Wishlist
 

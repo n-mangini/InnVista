@@ -24,15 +24,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
 import com.ua.innvista.R
-import com.ua.innvista.hotel.WishlistIconButton
 import com.ua.innvista.hotel.HotelModel
+import com.ua.innvista.hotel.WishlistIconButton
 import com.ua.innvista.ui.theme.cornerRadius
 import com.ua.innvista.ui.theme.iconSize
 import com.ua.innvista.ui.theme.imgHeight
