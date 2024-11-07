@@ -16,9 +16,7 @@ import com.ua.innvista.wishlist.Wishlist
 @Composable
 fun NavHostComposable(
     innerPadding: PaddingValues,
-    navController: NavHostController,
-    isDarkModeEnabled: Boolean,
-    onToggleDarkMode: (Boolean) -> Unit
+    navController: NavHostController
 ) {
     NavHost(
         navController = navController,
@@ -35,10 +33,7 @@ fun NavHostComposable(
             Wishlist()
         }
         composable(route = Screens.Profile.name) {
-            Profile(
-                isDarkModeEnabled = isDarkModeEnabled,
-                onToggleDarkMode = onToggleDarkMode
-            )
+            Profile()
         }
     }
 }

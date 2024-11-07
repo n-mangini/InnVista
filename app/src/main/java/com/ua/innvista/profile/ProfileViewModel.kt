@@ -5,11 +5,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ua.innvista.data.AppDatabase.Companion.clearDatabase
 import com.ua.innvista.data.PreferencesKeys
+import com.ua.innvista.data.PreferencesKeys.DARK_MODE_KEY
 import com.ua.innvista.data.clearDataStore
 import com.ua.innvista.data.getFromDataStore
+import com.ua.innvista.data.saveToDataStore
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -28,17 +29,24 @@ class ProfileViewModel @Inject constructor(
 
     private val _isLoggedIn = MutableStateFlow<Boolean?>(null)
 
-    init {
-        getUserFromDataStore()
+    private var _isDarkModeEnabled = MutableStateFlow(false)
+    val isDarkModeEnabled = _isDarkModeEnabled.asStateFlow()
 
+    init {
+        loadDarkMode()
+        loadUser()
+        loadLoggedIn()
+    }
+
+    private fun loadDarkMode() {
         viewModelScope.launch {
-            getFromDataStore(context, PreferencesKeys.NAME_KEY).collect { loggedIn ->
-                _isLoggedIn.value = loggedIn != null
+            getFromDataStore(context, DARK_MODE_KEY).collect { isDarkMode ->
+                _isDarkModeEnabled.value = isDarkMode == true
             }
         }
     }
 
-    private fun getUserFromDataStore() {
+    private fun loadUser() {
         viewModelScope.launch {
             getFromDataStore(context, PreferencesKeys.NAME_KEY).collect {
                 _name.value = it ?: ""
@@ -49,20 +57,35 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
-    fun saveUserToDataStore(name: String, surname: String) {
+    private fun loadLoggedIn() {
         viewModelScope.launch {
-            com.ua.innvista.data.saveToDataStore(
+            getFromDataStore(context, PreferencesKeys.NAME_KEY).collect {
+                _isLoggedIn.value = it != null
+            }
+        }
+    }
+
+    fun saveUser(name: String, surname: String) {
+        viewModelScope.launch {
+            saveToDataStore(
                 context,
                 name,
                 PreferencesKeys.NAME_KEY
             )
-            com.ua.innvista.data.saveToDataStore(
+            saveToDataStore(
                 context,
                 surname,
                 PreferencesKeys.SURNAME_KEY
             )
             _name.value = name
             _surname.value = surname
+        }
+    }
+
+    fun toggleDarkMode(enabled: Boolean) {
+        viewModelScope.launch {
+            saveToDataStore(context, enabled, DARK_MODE_KEY)
+            _isDarkModeEnabled.value = enabled
         }
     }
 

@@ -38,13 +38,11 @@ import com.ua.innvista.ui.theme.profileIconSize
 import com.ua.innvista.ui.theme.spacerBig
 
 @Composable
-fun Profile(
-    isDarkModeEnabled: Boolean,
-    onToggleDarkMode: (Boolean) -> Unit
-) {
+fun Profile() {
     val viewModel = hiltViewModel<ProfileViewModel>()
     val name by viewModel.name.collectAsState()
     val surname by viewModel.surname.collectAsState()
+    val isDarkModeEnabled by viewModel.isDarkModeEnabled.collectAsState()
 
     if (name.isEmpty()) {
         Box(
@@ -54,7 +52,7 @@ fun Profile(
         {
             SetUsername(
                 onSave = { enteredName, enteredSurname ->
-                    viewModel.saveUserToDataStore(
+                    viewModel.saveUser(
                         enteredName,
                         enteredSurname
                     )
@@ -66,7 +64,9 @@ fun Profile(
             name = name,
             surname = surname,
             isDarkModeEnabled = isDarkModeEnabled,
-            onToggleDarkMode = onToggleDarkMode
+            onToggleDarkMode = { enabled ->
+                viewModel.toggleDarkMode(enabled)
+            }
         )
     }
 }
@@ -118,6 +118,8 @@ fun UserProfile(
     isDarkModeEnabled: Boolean,
     onToggleDarkMode: (Boolean) -> Unit
 ) {
+    var isToggled by remember { mutableStateOf(isDarkModeEnabled) }
+
     Column(
         modifier = Modifier.padding(paddingBig)
     ) {
@@ -151,8 +153,11 @@ fun UserProfile(
             )
 
             Switch(
-                checked = isDarkModeEnabled,
-                onCheckedChange = onToggleDarkMode,
+                checked = isToggled,
+                onCheckedChange = { enabled ->
+                    isToggled = enabled
+                    onToggleDarkMode(enabled)
+                },
                 colors = SwitchDefaults.colors(
                     checkedThumbColor = MaterialTheme.colorScheme.primary,
                     uncheckedThumbColor = colorResource(R.color.white),

@@ -2,6 +2,7 @@ package com.ua.innvista.data
 
 import android.content.Context
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
@@ -13,6 +14,7 @@ val Context.dataStore by preferencesDataStore(name = "STAYINN_DATA_STORE")
 object PreferencesKeys {
     val NAME_KEY = stringPreferencesKey("name_key")
     val SURNAME_KEY = stringPreferencesKey("surname_key")
+    val DARK_MODE_KEY = booleanPreferencesKey("dark_mode_key")
 }
 
 suspend fun <T> saveToDataStore(context: Context, value: T, key: Preferences.Key<T>) {

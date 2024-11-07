@@ -70,8 +70,8 @@ class MainActivity : FragmentActivity() {
                 val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
                 val scope = rememberCoroutineScope()
 
-                var isDarkModeEnabled by remember { mutableStateOf(false) }
                 val viewModel = hiltViewModel<ProfileViewModel>()
+                val isDarkModeEnabled by viewModel.isDarkModeEnabled.collectAsState()
                 val name by viewModel.name.collectAsState()
 
                 InnVistaTheme(darkTheme = isDarkModeEnabled) {
@@ -115,9 +115,7 @@ class MainActivity : FragmentActivity() {
                             ) { innerPadding ->
                                 NavHostComposable(
                                     innerPadding,
-                                    navController,
-                                    isDarkModeEnabled = isDarkModeEnabled,
-                                    onToggleDarkMode = { isDarkModeEnabled = it }
+                                    navController
                                 )
                             }
                         }
