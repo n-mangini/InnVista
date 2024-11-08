@@ -80,6 +80,7 @@ fun SetUsername(
     var name by remember { mutableStateOf("") }
     var surname by remember { mutableStateOf("") }
     val isFormValid = name.isNotBlank() && surname.isNotBlank()
+    var hasStartedTyping by remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
@@ -97,7 +98,10 @@ fun SetUsername(
 
         TextField(
             value = name,
-            onValueChange = { name = it },
+            onValueChange = {
+                name = it
+                if (it.isNotEmpty()) hasStartedTyping = true
+            },
             label = { Text(text = stringResource(R.string.name)) },
             singleLine = true,
             modifier = Modifier.fillMaxWidth()
@@ -105,7 +109,10 @@ fun SetUsername(
 
         TextField(
             value = surname,
-            onValueChange = { surname = it },
+            onValueChange = {
+                surname = it
+                if (it.isNotEmpty()) hasStartedTyping = true
+            },
             label = { Text(text = stringResource(R.string.surname)) },
             singleLine = true,
             modifier = Modifier.fillMaxWidth()
@@ -121,7 +128,7 @@ fun SetUsername(
             Text(text = stringResource(R.string.save))
         }
 
-        if (!isFormValid) {
+        if (!isFormValid && hasStartedTyping) {
             Text(
                 text = stringResource(R.string.fill_all_fields),
                 style = MaterialTheme.typography.bodySmall,
