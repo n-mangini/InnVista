@@ -102,7 +102,12 @@ class MainActivity : FragmentActivity() {
                                     )
                                 },
                                 bottomBar = {
-                                    BottomBar { navController.navigate(it) }
+                                    BottomBar(
+                                        navController = navController,
+                                        onNavigate = { route ->
+                                            navController.navigate(route)
+                                        }
+                                    )
                                 },
                             ) { innerPadding ->
                                 NavHostComposable(
