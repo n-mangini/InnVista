@@ -161,17 +161,11 @@ fun BiometricAuthentication(
                 biometricAuthManager.authenticate(
                     context,
                     onError = {
-                        Toast.makeText(
-                            context,
-                            context.getString(R.string.authentication_error), Toast.LENGTH_SHORT
-                        ).show()
+                        showToast(context, context.getString(R.string.authentication_error))
                     },
                     onSuccess = onSuccess,
                     onFail = {
-                        Toast.makeText(
-                            context,
-                            context.getString(R.string.authentication_failed), Toast.LENGTH_SHORT
-                        ).show()
+                        showToast(context, context.getString(R.string.authentication_failed))
                     }
                 )
             }

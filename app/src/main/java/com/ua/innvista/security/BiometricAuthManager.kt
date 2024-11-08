@@ -10,6 +10,7 @@ import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import com.ua.innvista.R
+import com.ua.innvista.utils.showToast
 import javax.inject.Inject
 
 class BiometricAuthManager @Inject constructor() {
@@ -32,8 +33,7 @@ class BiometricAuthManager @Inject constructor() {
                 @RequiresApi(Build.VERSION_CODES.R)
                 override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
-                    Toast.makeText(context,
-                        context.getString(R.string.authentication_succeeded), Toast.LENGTH_SHORT).show()
+                    showToast(context, context.getString(R.string.authentication_succeeded))
                     onSuccess()
                 }
 

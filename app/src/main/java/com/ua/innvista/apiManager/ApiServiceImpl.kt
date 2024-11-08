@@ -2,9 +2,9 @@ package com.ua.innvista.apiManager
 
 import android.content.Context
 import android.util.Log
-import android.widget.Toast
 import com.ua.innvista.R
 import com.ua.innvista.hotel.HotelModel
+import com.ua.innvista.utils.showToast
 import retrofit.Call
 import retrofit.Callback
 import retrofit.GsonConverterFactory
@@ -54,8 +54,7 @@ class ApiServiceImpl @Inject constructor() {
 
             override fun onFailure(t: Throwable?) {
                 Log.e("ApiServiceImpl", "API call failed", t)
-                Toast.makeText(context,
-                    context.getString(R.string.fetch_api_fail_toast), Toast.LENGTH_SHORT).show()
+                showToast(context, context.getString(R.string.fetch_api_fail_toast))
                 onFail()
                 Log.d("ApiServiceImpl", "Loading finished in onFailure")
                 loadingFinished()
